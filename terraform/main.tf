@@ -6,7 +6,7 @@ module "vpc" {
   public_subnets_cidrs  = var.public_subnets_cidrs
   private_subnets_cidrs = var.private_subnets_cidrs
   availability_zones    = var.availability_zones
-  flow_log_role_arn = module.iam.vpc_flow_log_role_arn
+  flow_log_role_arn     = module.iam.vpc_flow_log_role_arn
 }
 
 module "iam" {
@@ -25,7 +25,7 @@ module "rds" {
 
   db_username = var.db_username
   dbPassword  = var.dbPassword
-  jwtSecret   = var.jwtSecret # Passing this down in case the module needs it
+  jwtSecret   = var.jwtSecret
 }
 
 module "eks" {

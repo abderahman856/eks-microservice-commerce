@@ -2,7 +2,7 @@ terraform {
   required_version = ">= 1.0.0"
 
   backend "s3" {
-    bucket  = "baashe-ecommerce-terraform-state" # The ID from your screenshot
+    bucket  = "baashe-ecommerce-terraform-state"
     key     = "dev/eks-cluster/terraform.tfstate"
     region  = "us-east-1"
     encrypt = true

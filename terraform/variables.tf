@@ -22,7 +22,7 @@ variable "private_subnets_cidrs" {
   default = ["10.0.10.0/24", "10.0.11.0/24"]
 }
 
-variable "availability_zones" { # Removed _cidrs because AZs are names (us-east-1a), not IPs
+variable "availability_zones" {
   type    = list(string)
   default = ["us-east-1a", "us-east-1b"]
 }

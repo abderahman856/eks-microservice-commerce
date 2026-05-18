@@ -85,9 +85,7 @@ resource "aws_subnet" "public_1" {
   availability_zone       = var.availability_zones[0]
   map_public_ip_on_launch = true
 
-  tags = {
-    Name = "public_1a"
-  }
+  tags = { Name = "public_1a" }
 }
 
 resource "aws_subnet" "public_2" {
@@ -96,9 +94,7 @@ resource "aws_subnet" "public_2" {
   availability_zone       = var.availability_zones[1]
   map_public_ip_on_launch = true
 
-  tags = {
-    Name = "public-1b"
-  }
+  tags = { Name = "public-1b" }
 }
 
 resource "aws_subnet" "private_1" {

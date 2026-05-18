@@ -21,6 +21,7 @@ resource "aws_security_group" "rds_sg" {
   }
 
   egress {
+    description = "Allow all outbound traffic"
     from_port   = 0
     to_port     = 0
     protocol    = "-1"
@@ -36,13 +37,47 @@ resource "aws_db_instance" "main" {
   engine_version    = "16.3"
   instance_class    = "db.t3.micro"
   username          = var.db_username
-
-  password = var.dbPassword # This pulls from your .tfvars
+  password          = var.dbPassword
 
   db_subnet_group_name   = aws_db_subnet_group.main.name
   vpc_security_group_ids = [aws_security_group.rds_sg.id]
+  publicly_accessible    = false
+  storage_type           = "gp2"
+  skip_final_snapshot    = true
 
-  skip_final_snapshot = true
-  publicly_accessible = false
-  storage_type        = "gp2"
+  storage_encrypted = true
+
+  auto_minor_version_upgrade = true
+
+  iam_database_authentication_enabled = true
+
+  deletion_protection = true
+
+  multi_az = true
+
+  copy_tags_to_snapshot = true
+
+  performance_insights_enabled = true
+
+  monitoring_interval = 60
+  monitoring_role_arn = aws_iam_role.rds_monitoring_role.arn
+
+  enabled_cloudwatch_logs_exports = ["postgresql", "upgrade"]
+}
+
+resource "aws_iam_role" "rds_monitoring_role" {
+  name = "${var.project_name}-rds-monitoring-role"
+  assume_role_policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [{
+      Action    = "sts:AssumeRole"
+      Effect    = "Allow"
+      Principal = { Service = "monitoring.rds.amazonaws.com" }
+    }]
+  })
+}
+
+resource "aws_iam_role_policy_attachment" "rds_monitoring_attach" {
+  role       = aws_iam_role.rds_monitoring_role.name
+  policy_arn = "arn:aws:iam::aws:policy/service-role/AmazonRDSEnhancedMonitoringRole"
 }
