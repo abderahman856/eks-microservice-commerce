@@ -4,13 +4,21 @@ on:
   push:
     branches: [ main ]
     paths: ['terraform/**']
+  workflow_dispatch: 
+    inputs:
+      working_dir:
+        description: 'Terraform Directory to Target'
+        required: true
+        default: 'terraform'
+        type: choice
+        options:
+          - 'terraform'
 
 jobs:
   tf-apply:
     name: Terraform Apply
     runs-on: ubuntu-latest
     
-    # Environment variables for AWS Authentication
     env:
       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
@@ -27,32 +35,32 @@ jobs:
 
       - name: Terraform Init
         id: init
-        working-directory: ./terraform
+        working-directory: ./${{ github.event.inputs.working_dir || 'terraform' }}
         run: |
           echo "Initializing Terraform backend..."
           terraform init -no-color
 
       - name: Terraform Validate
         id: validate
-        working-directory: ./terraform
+        working-directory: ./${{ github.event.inputs.working_dir || 'terraform' }}
         run: terraform validate -no-color
 
       - name: Terraform Apply
         id: apply
-        working-directory: ./terraform
+        working-directory: ./${{ github.event.inputs.working_dir || 'terraform' }}
         run: |
           echo "=========================================================="
-          echo "STARTING INFRASTRUCTURE DEPLOYMENT"
+          echo "STARTING INFRASTRUCTURE DEPLOYMENT IN: ${{ github.event.inputs.working_dir || 'terraform' }}"
           echo "=========================================================="
           terraform apply -auto-approve -no-color
-        continue-on-error: false # HARD FAIL if the deployment fails
-
+        continue-on-error: false 
       - name: Job Summary
         if: always()
         run: |
           echo "Infrastructure Deployment Summary" >> $GITHUB_STEP_SUMMARY
           echo "| Task | Status |" >> $GITHUB_STEP_SUMMARY
           echo "| :--- | :--- |" >> $GITHUB_STEP_SUMMARY
+          echo "| Target Folder | ./${{ github.event.inputs.working_dir || 'terraform' }} |" >> $GITHUB_STEP_SUMMARY
           echo "| Checkout | Success |" >> $GITHUB_STEP_SUMMARY
           echo "| Init | ${{ steps.init.outcome }} |" >> $GITHUB_STEP_SUMMARY
           echo "| Validate | ${{ steps.validate.outcome }} |" >> $GITHUB_STEP_SUMMARY

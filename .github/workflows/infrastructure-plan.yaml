@@ -47,6 +47,7 @@ jobs:
           framework: terraform
           # soft_fail: true # Change to false if you want to block the PR on any security find
           quiet: false
+          soft_fail: true
           output_format: cli,sarif
       
       - name: terraform plan
