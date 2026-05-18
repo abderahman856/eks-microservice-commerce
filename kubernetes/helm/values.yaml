@@ -19,7 +19,7 @@ global:
     PAYMENT_API_URL: "http://payment-service:8084"
     PRODUCT_API_URL: "http://product-service:8085"
   image:
-    tag: 19a0ac057925a9efc0996d8f9be12d3803d920b7
+    tag: 7dd9f9e309b04c6d6f051375e5a74237948348f5
 frontend:
   replicaCount: 1
   image:
