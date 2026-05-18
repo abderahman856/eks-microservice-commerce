@@ -1,6 +1,6 @@
 resource "aws_ecr_repository" "app_repos" {
-  for_each             = toset(var.ecr_repo_list)
-  
+  for_each = toset(var.ecr_repo_list)
+
   name                 = "${each.key}-service"
   image_tag_mutability = "MUTABLE"
 

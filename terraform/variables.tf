@@ -24,13 +24,13 @@ variable "availability_zones" { # Removed _cidrs because AZs are names (us-east-
 }
 
 variable "eks_cluster_role_name" {
-  type        = string
-  default     = "eks-cluster-role"
+  type    = string
+  default = "eks-cluster-role"
 }
 
 variable "node_group_role_name" {
-  type        = string
-  default     = "eks-node-group-role"
+  type    = string
+  default = "eks-node-group-role"
 }
 
 variable "dbPassword" {

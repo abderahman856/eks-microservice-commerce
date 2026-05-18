@@ -6,7 +6,7 @@ resource "aws_s3_bucket" "terraform_state" {
   }
 
   tags = {
-    Name        = "${var.project_name}-terraform-state"
+    Name = "${var.project_name}-terraform-state"
   }
 }
 

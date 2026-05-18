@@ -1,5 +1,5 @@
 module "ecr_repositories" {
-  source = "./ecr"  # Points to the folder where the resources are
+  source = "./ecr" # Points to the folder where the resources are
 
   ecr_repo_list = [
     "auth",
@@ -18,7 +18,7 @@ module "ecr_repositories" {
 }
 
 module "state_backend" {
-  source       = "./s3" 
+  source       = "./s3"
   project_name = "baashe-ecommerce"
   aws_region   = "us-east-1"
 }

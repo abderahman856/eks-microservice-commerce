@@ -1,7 +1,7 @@
 variable "ecr_repo_list" {
   description = "List of microservices requiring ECR repositories"
   type        = list(string)
-  default     = [
+  default = [
     "auth",
     "cart",
     "orders",
@@ -15,7 +15,7 @@ variable "ecr_repo_list" {
 variable "tags" {
   description = "Common tags for all repositories"
   type        = map(string)
-  default     = {
+  default = {
     Project = "Ecommerce-Platform"
     Owner   = "Baashe"
   }
