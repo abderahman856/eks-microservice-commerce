@@ -3,6 +3,9 @@ name: Build, push, scan, and update-gitOps
 on:
   push:
     branches: [ main ]
+    paths:
+      - 'services/**' 
+      - 'kubernetes/helm/**'
 
 jobs:
   Build-bush-and-scan:
@@ -10,7 +13,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        service: [auth, cart, frontend, notification, order, payment, product]
+        service: [auth, cart, frontend, notification, orders, payment, product]
 
     steps:
       - name: Checkout Code
