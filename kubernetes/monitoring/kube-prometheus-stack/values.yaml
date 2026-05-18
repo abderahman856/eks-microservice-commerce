@@ -1,6 +1,6 @@
 grafana:
   enabled: true
-  adminPassword: "admin" # Change this later!
+  adminPassword: "admin" 
   
   resources:
     requests:

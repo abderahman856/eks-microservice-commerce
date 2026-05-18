@@ -6,7 +6,7 @@ image:
 
 service:
   type: ClusterIP
-  port: 8083
+  port: 8082
 
 secrets:
   dbPassword: ""
@@ -14,8 +14,8 @@ secrets:
 
 resources:
   requests:
-    cpu: "10m"       # Only request 1% of a core
-    memory: "32Mi"   # Very small start-up memory
+    cpu: "10m"      
+    memory: "32Mi"   
   limits:
     cpu: "100m"
     memory: "128Mi"
