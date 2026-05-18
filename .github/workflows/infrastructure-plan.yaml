@@ -12,13 +12,7 @@ on:
 jobs:
   tf-plan:
     name: "Terraform Security and Plan"
-    runs-on: ubuntu-latest 
-
-    env:
-      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-      TF_VAR_dbPassword: ${{ secrets.DB_PASSWORD }}
-      AWS_REGION: "us-east-1"
+    runs-on: ubuntu-latest
     
     steps:
       - name: Checkout Code
@@ -50,7 +44,6 @@ jobs:
         with:
           directory: ./terraform
           framework: terraform
-          # soft_fail: true # Change to false if you want to block the PR on any security find
           quiet: false
           soft_fail: true
           output_format: cli,sarif
@@ -58,12 +51,16 @@ jobs:
       - name: terraform plan
         id: plan
         working-directory: ./terraform
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_REGION: "us-east-1"
+          TF_VAR_dbPassword: ${{ secrets.DB_PASSWORD }} 
         run: |
           echo "=========================================================="
           echo " GENERATING INFRASTRUCTURE PLAN"
           echo "=========================================================="
-          terraform plan -no-color -out=tfplan
-        continue-on-error: false
+          terraform plan -no-color -input=false -out=tfplan
 
       - name: Job Summary
         run: |
