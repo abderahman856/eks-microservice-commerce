@@ -3,12 +3,9 @@ name: Build, push, scan, and update-gitOps
 on:
   push:
     branches: [ main ]
-<<<<<<< Updated upstream
-=======
     # paths:
     #   - 'services/**' 
     #   - 'kubernetes/helm/**'
->>>>>>> Stashed changes
 
 jobs:
   Build-bush-and-scan:
@@ -16,7 +13,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        service: [auth, cart, frontend, notification, order, payment, product]
+        service: [auth, cart, frontend, notification, orders, payment, product]
 
     steps:
       - name: Checkout Code
@@ -60,9 +57,13 @@ jobs:
         run: |
           REPO_URL=${{ steps.login-ecr.outputs.registry }}/${{ matrix.service }}-service
           echo " Pushing image to ECR: $REPO_URL"
-          docker tag ${{ matrix.service }}:${{ github.sha }} $REPO_URL:${{ github.sha}}
+          
+          docker tag ${{ matrix.service }}:${{ github.sha }} $REPO_URL:${{ github.sha }}
           docker push $REPO_URL:${{ github.sha }}
+          
+          docker tag ${{ matrix.service }}:${{ github.sha }} $REPO_URL:latest
           docker push $REPO_URL:latest
+          
           echo " Successfully pushed ${{ matrix.service }} to ECR."
       
   update-gitOps:
