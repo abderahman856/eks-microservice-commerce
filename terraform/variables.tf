@@ -45,7 +45,6 @@ variable "dbPassword" {
 variable "jwtSecret" {
   type      = string
   sensitive = true
-  default = var.jwtSecret
 }
 
 variable "db_username" {
