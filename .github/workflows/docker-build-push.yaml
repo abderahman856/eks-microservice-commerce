@@ -3,9 +3,9 @@ name: Build, push, scan, and update-gitOps
 on:
   push:
     branches: [ main ]
-    # paths:
-    #   - 'services/**' 
-    #   - 'kubernetes/helm/**'
+    paths:
+      - 'services/**' 
+      - 'kubernetes/helm/**'
 
 jobs:
   Build-bush-and-scan:
