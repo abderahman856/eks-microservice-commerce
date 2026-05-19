@@ -42,16 +42,16 @@ resource "aws_db_instance" "main" {
   db_subnet_group_name   = aws_db_subnet_group.main.name
   vpc_security_group_ids = [aws_security_group.rds_sg.id]
   publicly_accessible    = false
-  storage_type           = "gp2"
-  skip_final_snapshot    = true
-
+  storage_type        = "gp2"
+  skip_final_snapshot = true
+  
   storage_encrypted = true
 
   auto_minor_version_upgrade = true
 
   iam_database_authentication_enabled = true
 
-  deletion_protection = true
+  deletion_protection = false
 
   multi_az = true
 
