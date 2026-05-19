@@ -62,6 +62,37 @@ The project focuses on modern DevOps and platform engineering practices includin
 
 ### App-with custom domain ( baashe.uk )
 
+![app-with-custom-domain](docs/app-with-custom-domain.jpg)
+
+### Docker-build-push-scan and updated gitOps
+
+![Docker-push](docs/docker-build-push-scan-gitops.jpg)
+
+### Terraform plan
+
+![terraform-plan](docs/terraform-plan-and-security.jpg)
+
+### Terraform apply 
+
+![terraform-apply](docs/terraform-apply.jpg)
+
+### Terraform destroy
+
+![terraform-destroy](docs/terraform-destroy.jpg)
+
+### Grafana with custom domain
+
+![Grafana-custom-domain](docs/grafana-custom-domain.jpg)
+
+![Grafana-custom-domain](docs/grafana-with-custome-domain.jpg)
+
+### Promotheus with custom domain
+
+![Promotheus-with-custom-domain](docs/promothues-custom-domain.jpg)
+
+### ArgoCD with custom domain
+
+![ArgoCd-custom-domain](docs/argoCd-with-app-infra-synced.jpg)
 
 ## Infrastructure Summary
 
