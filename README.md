@@ -14,9 +14,6 @@ The platform runs on a private-subnet EKS cluster backed by Multi-AZ RDS Postgre
 
 ## Badges
 
-[![Docker Build & GitOps](https://github.com/abderahman856/EKS-Microservice-Commerce/actions/workflows/docker-build-push.yaml/badge.svg)](https://github.com/abderahman856/EKS-Microservice-Commerce/actions/workflows/docker-build-push.yaml)
-[![Terraform Plan](https://github.com/abderahman856/EKS-Microservice-Commerce/actions/workflows/infrastructure-plan.yaml/badge.svg)](https://github.com/abderahman856/EKS-Microservice-Commerce/actions/workflows/infrastructure-plan.yaml)
-[![Terraform Apply](https://github.com/abderahman856/EKS-Microservice-Commerce/actions/workflows/infrastructure-apply.yaml/badge.svg)](https://github.com/abderahman856/EKS-Microservice-Commerce/actions/workflows/infrastructure-apply.yaml)
 ![Docker](https://img.shields.io/badge/Docker-Containerized-2496ED?logo=docker&logoColor=white)
 ![Terraform](https://img.shields.io/badge/Terraform-IaC-844FBA?logo=terraform&logoColor=white)
 ![AWS](https://img.shields.io/badge/AWS-EKS%20%7C%20RDS%20%7C%20ECR-232F3E?logo=amazon-aws&logoColor=white)
@@ -819,18 +816,12 @@ For infrastructure changes, the **Terraform Plan** workflow must pass on your pu
 
 ---
 
-## License
-
-No license file is included in this repository. If you intend to open-source this project, add a `LICENSE` file (e.g., MIT or Apache 2.0) before distribution.
-
----
-
 ## Author
 
 | | |
 | --- | --- |
-| **Name** | [Your Name] |
-| **LinkedIn** | [Your LinkedIn URL] |
-| **GitHub** | [Your GitHub URL] |
+| **Name** | Abdurahman |
+| **LinkedIn** | https://www.linkedin.com/in/abdurahman-za-eed-15a365410/ |
+| **GitHub** | https://github.com/abderahman856 |
 
 Built and maintained as a portfolio project demonstrating production-style DevOps practices on AWS EKS.
